@@ -18,9 +18,9 @@ def deserialize(filename):
         object = pickle.load(file)
     return object
 
-text = deserialize("text.pkl")
-trie = deserialize("trie.pkl")
-graph = deserialize("graph.pkl")
+text = deserialize("serialized/text.pkl")
+trie = deserialize("serialized/trie.pkl")
+graph = deserialize("serialized/graph.pkl")
 
 document = pymupdf.open(pdf_path)
 
@@ -30,7 +30,7 @@ def extract_text_from_pdf(pdf_path):
         page = document.load_page(page_num)
         text = [token[4] for token in page.get_text("words")]
         all_text.append(text)
-    serialize(all_text, "text.pkl")
+    serialize(all_text, "serialized/text.pkl")
     return all_text
 
 def create_pdf(filename, results):
@@ -70,7 +70,7 @@ def generate_trie(pages):
                 word = pages[i][j]
 
             trie.insert(word, i, j)
-    serialize(trie, "trie.pkl")
+    serialize(trie, "serialized/trie.pkl")
     return trie
 
 def generate_graph(references):
@@ -78,7 +78,7 @@ def generate_graph(references):
     for reference in references:
         for referenced in references[reference]:
             graph.add(reference, referenced)
-    serialize(graph, "graph.pkl")
+    serialize(graph, "serialized/graph.pkl")
     return graph
     
 def intersection(selected_pages1, selected_pages2):
