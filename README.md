@@ -35,21 +35,6 @@ pip install pymupdf
    - The default PDF path is `"Data Structures and Algorithms in Python.pdf"`
    - You can change this by modifying the `pdf_path` variable in `main.py`
 
-4. Initialize the search index:
-   - On first run, you'll need to generate the index files
-   - The program will create a `serialized/` directory with three files:
-     - `text.pkl`: Extracted text from the PDF
-     - `trie.pkl`: Trie data structure for word search
-     - `graph.pkl`: Graph structure for page references
-
-   To generate these files, you need to run the indexing functions first (uncomment and run the generation code in `main.py`):
-   ```python
-   # Generate index (run once)
-   text = extract_text_from_pdf(pdf_path)
-   trie = generate_trie(text)
-   graph = generate_graph(references)
-   ```
-
 ## Usage
 
 Run the search engine:
@@ -146,35 +131,3 @@ The system uses frequency-based heuristics to suggest corrections:
 
 - **Console**: Displays paginated search results with context snippets
 - **PDF File**: `search_results.pdf` contains the top 10 matching pages
-
-## Limitations
-
-- Currently optimized for "Data Structures and Algorithms in Python" PDF
-- Page number references are offset by 21 (specific to the source PDF)
-- Maximum word length for indexing is 20 characters
-- Phrase search is not yet implemented (commented out in code)
-
-## Future Enhancements
-
-- [ ] Phrase search support
-- [ ] Multiple PDF document support
-- [ ] GUI interface
-- [ ] Export results to multiple formats
-- [ ] Advanced filtering options
-- [ ] Configurable ranking weights
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## License
-
-This project is open source and available under the MIT License.
-
-## Authors
-
-- [re-pixel](https://github.com/re-pixel)
-
-## Acknowledgments
-
-This project was built as a demonstration of applying data structures and algorithms to real-world problems.
